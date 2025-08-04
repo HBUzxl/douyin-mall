@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cart;
+option go_package="./cart";
+
+message Request {
+  string ping = 1;
+}
+
+message Response {
+  string pong = 1;
+}
+
+service Cart {
+  rpc Ping(Request) returns(Response);
+}

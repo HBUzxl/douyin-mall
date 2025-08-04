@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package checkout;
+option go_package="./checkout";
+
+message Request {
+  string ping = 1;
+}
+
+message Response {
+  string pong = 1;
+}
+
+service Checkout {
+  rpc Ping(Request) returns(Response);
+}
