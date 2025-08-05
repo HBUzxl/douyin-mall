@@ -1,3 +1,7 @@
 Name: atlas-api
 Host: 0.0.0.0
 Port: 8888
+
+Swagger:
+  Host: 127.0.0.1:8888 #change to your server ip
+  IsEnable: true  # 是否开启
