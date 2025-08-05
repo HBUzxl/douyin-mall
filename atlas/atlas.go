@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"atlas/internal/config"
-	"atlas/internal/handler"
-	"atlas/internal/svc"
+	"douyin-mall/atlas/internal/config"
+	"douyin-mall/atlas/internal/handler"
+	"douyin-mall/atlas/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

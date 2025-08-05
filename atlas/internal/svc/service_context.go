@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"atlas/internal/config"
+	"douyin-mall/atlas/internal/config"
 )
 
 type ServiceContext struct {

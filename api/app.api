@@ -1,0 +1,27 @@
+syntax = "v1"
+
+info (
+	title:   "抖音商城 API"
+	desc:    "抖音商城后端服务"
+	author:  "Zhang Xiaoliang"
+	version: "v1"
+)
+
+type (
+	PingResp {
+		Info string `json:"info"`
+	}
+)
+
+@server (
+	group:  test
+	prefix: /api/v1
+)
+service atlas-api {
+	@doc (
+		summary: "test"
+	)
+	@handler Ping
+	get /ping returns (PingResp)
+}
+

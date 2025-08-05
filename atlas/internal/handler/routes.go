@@ -4,7 +4,8 @@ package handler
 import (
 	"net/http"
 
-	"atlas/internal/svc"
+	test "douyin-mall/atlas/internal/handler/test"
+	"douyin-mall/atlas/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
@@ -14,9 +15,10 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
-				Path:    "/from/:name",
-				Handler: AtlasHandler(serverCtx),
+				Path:    "/ping",
+				Handler: test.PingHandler(serverCtx),
 			},
 		},
+		rest.WithPrefix("/api/v1"),
 	)
 }

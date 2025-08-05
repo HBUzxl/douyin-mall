@@ -1,4 +1,4 @@
-module atlas
+module douyin-mall/atlas
 
 go 1.24.1
 

@@ -1,6 +1,6 @@
 package svc
 
-import "auth/internal/config"
+import "douyin-mall/auth/internal/config"
 
 type ServiceContext struct {
 	Config config.Config
