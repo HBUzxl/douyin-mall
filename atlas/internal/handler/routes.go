@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	test "douyin-mall/atlas/internal/handler/test"
+	user "douyin-mall/atlas/internal/handler/user"
 	"douyin-mall/atlas/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -20,6 +21,18 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodGet,
 				Path:    "/ping",
 				Handler: test.PingHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 用户登录
+				Method:  http.MethodPost,
+				Path:    "/user/auth",
+				Handler: user.UserLoginHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1"),

@@ -1,0 +1,22 @@
+type LoginReq {
+    Email string `json:"email"`
+    Password string `json:"password"`
+}
+
+type LoginResp {
+    Token string `json:"token"`
+    RefreshToken string `json:"refresh_token"`
+}
+
+@server (
+    group: user
+    prefix: api/v1
+)
+
+service atlas-api {
+    @doc (
+        summary: "用户登录"
+    )
+    @handler userLogin
+    post /user/auth (LoginReq) returns (LoginResp)
+}

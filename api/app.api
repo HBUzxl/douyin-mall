@@ -7,6 +7,17 @@ info (
 	version: "v1"
 )
 
+import (
+	// "auth.api"
+	// "cart.api"
+	// "checkout.api"
+	// "eino.api"
+	// "order.api"
+	// "payment.api"
+	// "product.api"
+	"user.api"
+)
+
 type (
 	PingResp {
 		Info string `json:"info"`
