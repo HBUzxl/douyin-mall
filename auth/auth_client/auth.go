@@ -7,7 +7,7 @@ package auth_client
 import (
 	"context"
 
-	"douyin-mall/auth/auth"
+	"github.com/HBUzxl/douyin-mall/auth/auth"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

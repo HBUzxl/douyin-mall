@@ -6,10 +6,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/rest"
-
-	"douyin-mall/atlas/internal/svc"
 )
 
 //go:embed swagger

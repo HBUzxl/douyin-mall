@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"douyin-mall/user/internal/logic"
-	"douyin-mall/user/internal/svc"
-	"douyin-mall/user/user"
+	"github.com/HBUzxl/douyin-mall/user/internal/logic"
+	"github.com/HBUzxl/douyin-mall/user/internal/svc"
+	"github.com/HBUzxl/douyin-mall/user/user"
 )
 
 type UserServer struct {

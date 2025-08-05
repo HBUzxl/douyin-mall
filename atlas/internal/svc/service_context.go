@@ -1,9 +1,8 @@
 package svc
 
 import (
-	"douyin-mall/atlas/internal/config"
-	"douyin-mall/user/user_client"
-
+	"github.com/HBUzxl/douyin-mall/atlas/internal/config"
+	"github.com/HBUzxl/douyin-mall/user/user_client"
 	"github.com/zeromicro/go-zero/zrpc"
 )
 

@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"douyin-mall/auth/auth"
-	"douyin-mall/auth/internal/logic"
-	"douyin-mall/auth/internal/svc"
+	"github.com/HBUzxl/douyin-mall/auth/auth"
+	"github.com/HBUzxl/douyin-mall/auth/internal/logic"
+	"github.com/HBUzxl/douyin-mall/auth/internal/svc"
 )
 
 type AuthServer struct {

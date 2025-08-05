@@ -7,7 +7,7 @@ package user_client
 import (
 	"context"
 
-	"douyin-mall/user/user"
+	"github.com/HBUzxl/douyin-mall/user/user"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

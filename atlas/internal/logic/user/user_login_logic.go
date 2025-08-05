@@ -3,9 +3,8 @@ package user
 import (
 	"context"
 
-	"douyin-mall/atlas/internal/svc"
-	"douyin-mall/atlas/internal/types"
-
+	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
+	"github.com/HBUzxl/douyin-mall/atlas/internal/types"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 

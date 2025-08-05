@@ -3,9 +3,8 @@ package test
 import (
 	"net/http"
 
-	"douyin-mall/atlas/internal/logic/test"
-	"douyin-mall/atlas/internal/svc"
-
+	"github.com/HBUzxl/douyin-mall/atlas/internal/logic/test"
+	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 

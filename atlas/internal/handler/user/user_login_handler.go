@@ -3,10 +3,9 @@ package user
 import (
 	"net/http"
 
-	"douyin-mall/atlas/internal/logic/user"
-	"douyin-mall/atlas/internal/svc"
-	"douyin-mall/atlas/internal/types"
-
+	"github.com/HBUzxl/douyin-mall/atlas/internal/logic/user"
+	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
+	"github.com/HBUzxl/douyin-mall/atlas/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
