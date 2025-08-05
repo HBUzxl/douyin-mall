@@ -1,4 +1,4 @@
-module response
+module github.com/HBUzxl/douyin-mall/response
 
 go 1.24.1
 

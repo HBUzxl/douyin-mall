@@ -1,3 +1,3 @@
-module douyin-mall/common
+module github.com/HBUzxl/douyin-mall/common
 
 go 1.24.1

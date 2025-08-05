@@ -1,4 +1,4 @@
-module douyin-mall/user
+module github.com/HBUzxl/douyin-mall/user
 
 go 1.24.1
 

@@ -1,4 +1,4 @@
-module douyin-mall/atlas
+module github.com/HBUzxl/douyin-mall/atlas
 
 go 1.24.1
 
