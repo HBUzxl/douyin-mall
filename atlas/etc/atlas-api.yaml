@@ -5,3 +5,10 @@ Port: 8888
 Swagger:
   Host: 127.0.0.1:8888 #change to your server ip
   IsEnable: true  # 是否开启
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+  NonBlock: true
