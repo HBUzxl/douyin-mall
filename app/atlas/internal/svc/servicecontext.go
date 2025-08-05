@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"api/internal/config"
+	"atlas/internal/config"
 )
 
 type ServiceContext struct {

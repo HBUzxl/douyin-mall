@@ -8,8 +8,8 @@ type Response {
 	Message string `json:"message"`
 }
 
-service api-api {
-	@handler ApiHandler
+service atlas-api {
+	@handler AtlasHandler
 	get /from/:name (Request) returns (Response)
 }
 

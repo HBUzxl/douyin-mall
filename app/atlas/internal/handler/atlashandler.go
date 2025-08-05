@@ -3,13 +3,13 @@ package handler
 import (
 	"net/http"
 
-	"api/internal/logic"
-	"api/internal/svc"
-	"api/internal/types"
+	"atlas/internal/logic"
+	"atlas/internal/svc"
+	"atlas/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
-func ApiHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func AtlasHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.Request
 		if err := httpx.Parse(r, &req); err != nil {
@@ -17,8 +17,8 @@ func ApiHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			return
 		}
 
-		l := logic.NewApiLogic(r.Context(), svcCtx)
-		resp, err := l.Api(&req)
+		l := logic.NewAtlasLogic(r.Context(), svcCtx)
+		resp, err := l.Atlas(&req)
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
 		} else {

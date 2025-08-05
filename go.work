@@ -1,11 +1,11 @@
 go 1.24.1
 
 use (
-	./app/api
+	./app/atlas
 	./app/auth
-    ./app/cart
+	./app/cart
 	./app/checkout
-    ./app/eino
+	./app/eino
 	./app/order
 	./app/payment
 	./app/product
