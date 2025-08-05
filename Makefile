@@ -13,9 +13,10 @@ api: ## 自动生成 API 代码
 		echo 'Go version:' && go version && echo 'goctl version:' && goctl --version && \
 		goctl api go --home ${workdir}/response --api ${workdir}/api/app.api --style=go_zero --dir ${workdir}/atlas/ && \
 		goctl rpc protoc ${workdir}/pb/auth.proto --style=go_zero --proto_path=${workdir}/pb/ \
-			--go_out=${workdir}/auth --go-grpc_out=${workdir}/auth --zrpc_out=${workdir}/auth \
+			--go_out=${workdir}/auth --go-grpc_out=${workdir}/auth --zrpc_out=${workdir}/auth && \
+		goctl rpc protoc ${workdir}/pb/user.proto --style=go_zero --proto_path=${workdir}/pb/ \
+			--go_out=${workdir}/user --go-grpc_out=${workdir}/user --zrpc_out=${workdir}/user \
 		"
-
 .PHONY: swagger
 swagger:  ## 生成swagger文件并更新swagger配置文件
 	@echo "生成swagger文件并运行"

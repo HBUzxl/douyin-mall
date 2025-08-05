@@ -20,16 +20,17 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Request struct {
+type LoginReq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Ping string `protobuf:"bytes,1,opt,name=ping,proto3" json:"ping,omitempty"`
+	Email    string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password string `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 }
 
-func (x *Request) Reset() {
-	*x = Request{}
+func (x *LoginReq) Reset() {
+	*x = LoginReq{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_user_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -37,13 +38,13 @@ func (x *Request) Reset() {
 	}
 }
 
-func (x *Request) String() string {
+func (x *LoginReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Request) ProtoMessage() {}
+func (*LoginReq) ProtoMessage() {}
 
-func (x *Request) ProtoReflect() protoreflect.Message {
+func (x *LoginReq) ProtoReflect() protoreflect.Message {
 	mi := &file_user_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,28 +56,35 @@ func (x *Request) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Request.ProtoReflect.Descriptor instead.
-func (*Request) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginReq.ProtoReflect.Descriptor instead.
+func (*LoginReq) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Request) GetPing() string {
+func (x *LoginReq) GetEmail() string {
 	if x != nil {
-		return x.Ping
+		return x.Email
 	}
 	return ""
 }
 
-type Response struct {
+func (x *LoginReq) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type LoginResp struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Pong string `protobuf:"bytes,1,opt,name=pong,proto3" json:"pong,omitempty"`
+	UserUuid string `protobuf:"bytes,1,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
 }
 
-func (x *Response) Reset() {
-	*x = Response{}
+func (x *LoginResp) Reset() {
+	*x = LoginResp{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_user_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -84,13 +92,13 @@ func (x *Response) Reset() {
 	}
 }
 
-func (x *Response) String() string {
+func (x *LoginResp) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Response) ProtoMessage() {}
+func (*LoginResp) ProtoMessage() {}
 
-func (x *Response) ProtoReflect() protoreflect.Message {
+func (x *LoginResp) ProtoReflect() protoreflect.Message {
 	mi := &file_user_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -102,14 +110,14 @@ func (x *Response) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Response.ProtoReflect.Descriptor instead.
-func (*Response) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginResp.ProtoReflect.Descriptor instead.
+func (*LoginResp) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Response) GetPong() string {
+func (x *LoginResp) GetUserUuid() string {
 	if x != nil {
-		return x.Pong
+		return x.UserUuid
 	}
 	return ""
 }
@@ -118,15 +126,17 @@ var File_user_proto protoreflect.FileDescriptor
 
 var file_user_proto_rawDesc = []byte{
 	0x0a, 0x0a, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x04, 0x75, 0x73,
-	0x65, 0x72, 0x22, 0x1d, 0x0a, 0x07, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a,
-	0x04, 0x70, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x69, 0x6e,
-	0x67, 0x22, 0x1e, 0x0a, 0x08, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a,
-	0x04, 0x70, 0x6f, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x70, 0x6f, 0x6e,
-	0x67, 0x32, 0x2d, 0x0a, 0x04, 0x55, 0x73, 0x65, 0x72, 0x12, 0x25, 0x0a, 0x04, 0x50, 0x69, 0x6e,
-	0x67, 0x12, 0x0d, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x0e, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x65, 0x72, 0x22, 0x3c, 0x0a, 0x08, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x12, 0x14,
+	0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65,
+	0x6d, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x22, 0x28, 0x0a, 0x09, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x12, 0x1b, 0x0a,
+	0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x75, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x55, 0x75, 0x69, 0x64, 0x32, 0x30, 0x0a, 0x04, 0x55, 0x73,
+	0x65, 0x72, 0x12, 0x28, 0x0a, 0x05, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x0e, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x1a, 0x0f, 0x2e, 0x75, 0x73,
+	0x65, 0x72, 0x2e, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x42, 0x08, 0x5a, 0x06,
+	0x2e, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -143,12 +153,12 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_user_proto_goTypes = []interface{}{
-	(*Request)(nil),  // 0: user.Request
-	(*Response)(nil), // 1: user.Response
+	(*LoginReq)(nil),  // 0: user.LoginReq
+	(*LoginResp)(nil), // 1: user.LoginResp
 }
 var file_user_proto_depIdxs = []int32{
-	0, // 0: user.User.Ping:input_type -> user.Request
-	1, // 1: user.User.Ping:output_type -> user.Response
+	0, // 0: user.User.Login:input_type -> user.LoginReq
+	1, // 1: user.User.Login:output_type -> user.LoginResp
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -163,7 +173,7 @@ func file_user_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Request); i {
+			switch v := v.(*LoginReq); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -175,7 +185,7 @@ func file_user_proto_init() {
 			}
 		}
 		file_user_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Response); i {
+			switch v := v.(*LoginResp); i {
 			case 0:
 				return &v.state
 			case 1:
