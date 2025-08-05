@@ -1,13 +1,15 @@
 go 1.24.1
 
 use (
-	./app/atlas
-	./app/auth
-	./app/cart
-	./app/checkout
-	./app/eino
-	./app/order
-	./app/payment
-	./app/product
-	./app/user
+	./atlas
+	./auth
+	./cart
+	./checkout
+	./common
+	./eino
+	./order
+	./payment
+	./product
+	./response
+	./user
 )
