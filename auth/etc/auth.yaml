@@ -4,3 +4,14 @@ Etcd:
   Hosts:
   - 127.0.0.1:2379
   Key: auth.rpc
+
+JWT:
+  PrivateSecret: "private Secret"
+  PublicSecret: "public key"
+  TokenExpire: 24
+  RefreshTokenExpire: 168
+
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node  # node 单节点；cluster 分片集群；sentinel 哨兵模式；master/slave 主从复制
+  Pass: ""    # 密码
