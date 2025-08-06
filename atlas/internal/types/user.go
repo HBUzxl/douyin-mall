@@ -12,3 +12,13 @@ type LoginResp struct {
 	Token        string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
 }
+
+type RegisterReq struct {
+	Email           string `form:"email"`
+	Password        string `form:"password"`
+	ConfirmPassword string `form:"confirm_password"`
+}
+
+type RegisterResp struct {
+	UserUuid string `json:"user_uuid"`
+}

@@ -8,6 +8,16 @@ type LoginResp {
     RefreshToken string `json:"refresh_token"`
 }
 
+type RegisterReq {
+    Email string `form:"email"`
+    Password string `form:"password"`
+    ConfirmPassword string `form:"confirm_password"`
+}
+
+type RegisterResp {
+    UserUuid string `json:"user_uuid"`
+}
+
 @server (
     group: user
     prefix: api/v1
@@ -19,4 +29,10 @@ service atlas-api {
     )
     @handler userLogin
     post /user/auth (LoginReq) returns (LoginResp)
+
+    @doc (
+        summary: "用户注册"
+    )
+    @handler userRegister
+    post /user/register (RegisterReq) returns (RegisterResp)
 }
