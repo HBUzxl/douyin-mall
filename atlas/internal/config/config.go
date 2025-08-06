@@ -9,6 +9,7 @@ type Config struct {
 	rest.RestConf
 	Swagger Swagger
 	UserRpc zrpc.RpcClientConf
+	AuthRpc zrpc.RpcClientConf
 }
 
 type Swagger struct {
