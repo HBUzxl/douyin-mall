@@ -10,7 +10,7 @@ import (
 )
 
 // 签发token
-func SignToken(userUuid string, privateKeyString string, tokenExpire int, refreshTokenExpire int) (string, string, error) {
+func SignToken(userUuid string, privateKeyString string, tokenExpire int64, refreshTokenExpire int64) (string, string, error) {
 	tokenExpireAt := time.Now().Add(time.Duration(tokenExpire) * time.Hour)
 	refreshTokenExpireAt := time.Now().Add(time.Duration(refreshTokenExpire) * time.Hour)
 
