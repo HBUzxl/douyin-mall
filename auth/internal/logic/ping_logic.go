@@ -3,9 +3,8 @@ package logic
 import (
 	"context"
 
-	"douyin-mall/auth/auth"
-	"douyin-mall/auth/internal/svc"
-
+	"github.com/HBUzxl/douyin-mall/auth/auth"
+	"github.com/HBUzxl/douyin-mall/auth/internal/svc"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 

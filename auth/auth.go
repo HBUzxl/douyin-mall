@@ -4,11 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"douyin-mall/auth/auth"
-	"douyin-mall/auth/internal/config"
-	"douyin-mall/auth/internal/server"
-	"douyin-mall/auth/internal/svc"
-
+	"github.com/HBUzxl/douyin-mall/auth/auth"
+	"github.com/HBUzxl/douyin-mall/auth/internal/config"
+	"github.com/HBUzxl/douyin-mall/auth/internal/server"
+	"github.com/HBUzxl/douyin-mall/auth/internal/svc"
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/zrpc"
