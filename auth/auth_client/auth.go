@@ -14,11 +14,15 @@ import (
 )
 
 type (
-	Request  = auth.Request
-	Response = auth.Response
+	DeliverTokenReq  = auth.DeliverTokenReq
+	DeliverTokenResp = auth.DeliverTokenResp
+	RefreshTokenReq  = auth.RefreshTokenReq
 
 	Auth interface {
-		Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+		// 分发token
+		DeliverTokenByRpc(ctx context.Context, in *DeliverTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error)
+		// 刷新token
+		RefreshTokenByRpc(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error)
 	}
 
 	defaultAuth struct {
@@ -32,7 +36,14 @@ func NewAuth(cli zrpc.Client) Auth {
 	}
 }
 
-func (m *defaultAuth) Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
+// 分发token
+func (m *defaultAuth) DeliverTokenByRpc(ctx context.Context, in *DeliverTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error) {
 	client := auth.NewAuthClient(m.cli.Conn())
-	return client.Ping(ctx, in, opts...)
+	return client.DeliverTokenByRpc(ctx, in, opts...)
+}
+
+// 刷新token
+func (m *defaultAuth) RefreshTokenByRpc(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error) {
+	client := auth.NewAuthClient(m.cli.Conn())
+	return client.RefreshTokenByRpc(ctx, in, opts...)
 }

@@ -3,14 +3,25 @@ syntax = "proto3";
 package auth;
 option go_package="./auth";
 
-message Request {
-  string ping = 1;
+message DeliverTokenReq {
+  string user_uuid = 1;
 }
 
-message Response {
-  string pong = 1;
+message DeliverTokenResp {
+  string token = 1;
+  string refresh_token = 2;
+  int64 token_expire_after = 3;
+  int64 refresh_token_expire_after = 4;
+}
+
+message RefreshTokenReq {
+  string refresh_token = 1;
 }
 
 service Auth {
-  rpc Ping(Request) returns(Response);
+  // 分发token
+  rpc DeliverTokenByRpc (DeliverTokenReq) returns (DeliverTokenResp);
+
+  // 刷新token
+  rpc RefreshTokenByRpc (RefreshTokenReq) returns (DeliverTokenResp);  
 }

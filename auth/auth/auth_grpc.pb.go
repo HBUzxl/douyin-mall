@@ -19,14 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Auth_Ping_FullMethodName = "/auth.Auth/Ping"
+	Auth_DeliverTokenByRpc_FullMethodName = "/auth.Auth/DeliverTokenByRpc"
+	Auth_RefreshTokenByRpc_FullMethodName = "/auth.Auth/RefreshTokenByRpc"
 )
 
 // AuthClient is the client API for Auth service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
-	Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	// 分发token
+	DeliverTokenByRpc(ctx context.Context, in *DeliverTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error)
+	// 刷新token
+	RefreshTokenByRpc(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error)
 }
 
 type authClient struct {
@@ -37,9 +41,18 @@ func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
 }
 
-func (c *authClient) Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
-	err := c.cc.Invoke(ctx, Auth_Ping_FullMethodName, in, out, opts...)
+func (c *authClient) DeliverTokenByRpc(ctx context.Context, in *DeliverTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error) {
+	out := new(DeliverTokenResp)
+	err := c.cc.Invoke(ctx, Auth_DeliverTokenByRpc_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) RefreshTokenByRpc(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*DeliverTokenResp, error) {
+	out := new(DeliverTokenResp)
+	err := c.cc.Invoke(ctx, Auth_RefreshTokenByRpc_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +63,10 @@ func (c *authClient) Ping(ctx context.Context, in *Request, opts ...grpc.CallOpt
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility
 type AuthServer interface {
-	Ping(context.Context, *Request) (*Response, error)
+	// 分发token
+	DeliverTokenByRpc(context.Context, *DeliverTokenReq) (*DeliverTokenResp, error)
+	// 刷新token
+	RefreshTokenByRpc(context.Context, *RefreshTokenReq) (*DeliverTokenResp, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -58,8 +74,11 @@ type AuthServer interface {
 type UnimplementedAuthServer struct {
 }
 
-func (UnimplementedAuthServer) Ping(context.Context, *Request) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+func (UnimplementedAuthServer) DeliverTokenByRpc(context.Context, *DeliverTokenReq) (*DeliverTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeliverTokenByRpc not implemented")
+}
+func (UnimplementedAuthServer) RefreshTokenByRpc(context.Context, *RefreshTokenReq) (*DeliverTokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshTokenByRpc not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 
@@ -74,20 +93,38 @@ func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
 	s.RegisterService(&Auth_ServiceDesc, srv)
 }
 
-func _Auth_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+func _Auth_DeliverTokenByRpc_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeliverTokenReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Ping(ctx, in)
+		return srv.(AuthServer).DeliverTokenByRpc(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Ping_FullMethodName,
+		FullMethod: Auth_DeliverTokenByRpc_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Ping(ctx, req.(*Request))
+		return srv.(AuthServer).DeliverTokenByRpc(ctx, req.(*DeliverTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_RefreshTokenByRpc_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).RefreshTokenByRpc(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_RefreshTokenByRpc_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).RefreshTokenByRpc(ctx, req.(*RefreshTokenReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +137,12 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _Auth_Ping_Handler,
+			MethodName: "DeliverTokenByRpc",
+			Handler:    _Auth_DeliverTokenByRpc_Handler,
+		},
+		{
+			MethodName: "RefreshTokenByRpc",
+			Handler:    _Auth_RefreshTokenByRpc_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

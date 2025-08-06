@@ -23,7 +23,14 @@ func NewAuthServer(svcCtx *svc.ServiceContext) *AuthServer {
 	}
 }
 
-func (s *AuthServer) Ping(ctx context.Context, in *auth.Request) (*auth.Response, error) {
-	l := logic.NewPingLogic(ctx, s.svcCtx)
-	return l.Ping(in)
+// 分发token
+func (s *AuthServer) DeliverTokenByRpc(ctx context.Context, in *auth.DeliverTokenReq) (*auth.DeliverTokenResp, error) {
+	l := logic.NewDeliverTokenByRpcLogic(ctx, s.svcCtx)
+	return l.DeliverTokenByRpc(in)
+}
+
+// 刷新token
+func (s *AuthServer) RefreshTokenByRpc(ctx context.Context, in *auth.RefreshTokenReq) (*auth.DeliverTokenResp, error) {
+	l := logic.NewRefreshTokenByRpcLogic(ctx, s.svcCtx)
+	return l.RefreshTokenByRpc(in)
 }
