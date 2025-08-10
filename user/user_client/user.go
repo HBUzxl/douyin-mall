@@ -14,11 +14,16 @@ import (
 )
 
 type (
-	LoginReq  = user.LoginReq
-	LoginResp = user.LoginResp
+	LoginReq     = user.LoginReq
+	LoginResp    = user.LoginResp
+	RegisterReq  = user.RegisterReq
+	RegisterResp = user.RegisterResp
 
 	User interface {
+		// 用户登录
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
+		// 用户注册
+		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 	}
 
 	defaultUser struct {
@@ -32,7 +37,14 @@ func NewUser(cli zrpc.Client) User {
 	}
 }
 
+// 用户登录
 func (m *defaultUser) Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.Login(ctx, in, opts...)
+}
+
+// 用户注册
+func (m *defaultUser) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.Register(ctx, in, opts...)
 }
