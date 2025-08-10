@@ -3,14 +3,22 @@ syntax = "proto3";
 package cart;
 option go_package="./cart";
 
-message Request {
-  string ping = 1;
+message GetCartReq {
+  string user_uuid = 1 [json_name = "user_uuid"];
 }
 
-message Response {
-  string pong = 1;
+message GetCartResp {
+  repeated CartItem cart_items = 1 [json_name = "cart_items"];
 }
+
+message CartItem {
+  string user_uuid = 1 [json_name = "user_uuid"];
+  string product_uuid = 2 [json_name = "product_uuid"];
+  int64 quantity = 3 [json_name = "quantity"];
+}
+
 
 service Cart {
-  rpc Ping(Request) returns(Response);
+  // 获取购物车
+  rpc GetCart(GetCartReq) returns(GetCartResp);
 }

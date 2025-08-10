@@ -16,6 +16,69 @@
   "host": "127.0.0.1",
   "basePath": "/",
   "paths": {
+    "/api/v1/cart": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "获取购物车",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "user_uuid"
+              ],
+              "properties": {
+                "user_uuid": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cart_items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "product_uuid",
+                      "quantity"
+                    ],
+                    "properties": {
+                      "product_uuid": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/ping": {
       "get": {
         "produces": [
@@ -301,7 +364,7 @@
       }
     }
   },
-  "x-date": "2025-08-10 18:04:08",
+  "x-date": "2025-08-10 19:05:09",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

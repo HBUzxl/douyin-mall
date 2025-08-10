@@ -6,6 +6,7 @@ package handler
 import (
 	"net/http"
 
+	cart "github.com/HBUzxl/douyin-mall/atlas/internal/handler/cart"
 	test "github.com/HBUzxl/douyin-mall/atlas/internal/handler/test"
 	user "github.com/HBUzxl/douyin-mall/atlas/internal/handler/user"
 	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
@@ -14,6 +15,18 @@ import (
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 获取购物车
+				Method:  http.MethodGet,
+				Path:    "/cart",
+				Handler: cart.GetCartHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1"),
+	)
+
 	server.AddRoutes(
 		[]rest.Route{
 			{

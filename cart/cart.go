@@ -4,11 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"cart/cart"
-	"cart/internal/config"
-	"cart/internal/server"
-	"cart/internal/svc"
-
+	"github.com/HBUzxl/douyin-mall/cart/cart"
+	"github.com/HBUzxl/douyin-mall/cart/internal/config"
+	"github.com/HBUzxl/douyin-mall/cart/internal/server"
+	"github.com/HBUzxl/douyin-mall/cart/internal/svc"
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/zrpc"

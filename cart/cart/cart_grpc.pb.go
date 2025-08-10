@@ -19,14 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Cart_Ping_FullMethodName = "/cart.Cart/Ping"
+	Cart_GetCart_FullMethodName = "/cart.Cart/GetCart"
 )
 
 // CartClient is the client API for Cart service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CartClient interface {
-	Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	// 获取购物车
+	GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error)
 }
 
 type cartClient struct {
@@ -37,9 +38,9 @@ func NewCartClient(cc grpc.ClientConnInterface) CartClient {
 	return &cartClient{cc}
 }
 
-func (c *cartClient) Ping(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
-	out := new(Response)
-	err := c.cc.Invoke(ctx, Cart_Ping_FullMethodName, in, out, opts...)
+func (c *cartClient) GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error) {
+	out := new(GetCartResp)
+	err := c.cc.Invoke(ctx, Cart_GetCart_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +51,8 @@ func (c *cartClient) Ping(ctx context.Context, in *Request, opts ...grpc.CallOpt
 // All implementations must embed UnimplementedCartServer
 // for forward compatibility
 type CartServer interface {
-	Ping(context.Context, *Request) (*Response, error)
+	// 获取购物车
+	GetCart(context.Context, *GetCartReq) (*GetCartResp, error)
 	mustEmbedUnimplementedCartServer()
 }
 
@@ -58,8 +60,8 @@ type CartServer interface {
 type UnimplementedCartServer struct {
 }
 
-func (UnimplementedCartServer) Ping(context.Context, *Request) (*Response, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+func (UnimplementedCartServer) GetCart(context.Context, *GetCartReq) (*GetCartResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCart not implemented")
 }
 func (UnimplementedCartServer) mustEmbedUnimplementedCartServer() {}
 
@@ -74,20 +76,20 @@ func RegisterCartServer(s grpc.ServiceRegistrar, srv CartServer) {
 	s.RegisterService(&Cart_ServiceDesc, srv)
 }
 
-func _Cart_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Request)
+func _Cart_GetCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCartReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CartServer).Ping(ctx, in)
+		return srv.(CartServer).GetCart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Cart_Ping_FullMethodName,
+		FullMethod: Cart_GetCart_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CartServer).Ping(ctx, req.(*Request))
+		return srv.(CartServer).GetCart(ctx, req.(*GetCartReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +102,8 @@ var Cart_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CartServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _Cart_Ping_Handler,
+			MethodName: "GetCart",
+			Handler:    _Cart_GetCart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

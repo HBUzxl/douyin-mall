@@ -1,0 +1,26 @@
+type CartItem {
+    ProductUuid string `json:"product_uuid"`
+    Quantity int64 `json:"quantity"`
+}
+
+type GetCartReq {
+    UserUuid string `json:"user_uuid"`
+}
+
+type GetCartResp {
+    Total int64 `json:"total"`
+    CartItems []CartItem `json:"cart_items"`
+}
+
+@server (
+    group: cart
+    prefix: api/v1
+)
+
+service atlas-api {
+    @doc(
+        summary: "获取购物车"
+    )
+    @handler getCart
+    get /cart (GetCartReq) returns (GetCartResp)
+}
