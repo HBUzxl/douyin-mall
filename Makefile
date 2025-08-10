@@ -17,6 +17,9 @@ api: ## 自动生成 API 代码
 		goctl rpc protoc ${workdir}/pb/user.proto --style=go_zero --proto_path=${workdir}/pb/ \
 			--go_out=${workdir}/user --go-grpc_out=${workdir}/user --zrpc_out=${workdir}/user \
 		"
+	@echo "生成swagger文件并运行"
+	@/bin/sh -c "goctl api swagger --api ./api/app.api --dir atlas/internal/handler/swagger --filename app"
+
 .PHONY: swagger
 swagger:  ## 生成swagger文件并更新swagger配置文件
 	@echo "生成swagger文件并运行"

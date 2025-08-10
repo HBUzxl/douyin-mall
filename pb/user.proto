@@ -12,6 +12,8 @@ message LoginResp {
   string user_uuid = 1 [json_name = "user_uuid"];
 }
 
+
+
 message RegisterReq {
   string email = 1 [json_name = "email"];
   string password = 2 [json_name = "password"];

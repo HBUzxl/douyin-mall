@@ -18,6 +18,13 @@ type RegisterResp {
     UserUuid string `json:"user_uuid"`
 }
 
+type LogoutReq {
+}
+
+type LogoutResp {
+    Ok bool `json:"ok"`
+}
+
 @server (
     group: user
     prefix: api/v1
@@ -35,4 +42,10 @@ service atlas-api {
     )
     @handler userRegister
     post /user/register (RegisterReq) returns (RegisterResp)
+
+    @doc (
+        summary: "用户退出"
+    )
+    @handler userLogout
+    post /user/logout (LogoutReq) returns (LogoutResp)
 }

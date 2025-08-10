@@ -35,6 +35,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: user.UserLoginHandler(serverCtx),
 			},
 			{
+				// 用户退出
+				Method:  http.MethodPost,
+				Path:    "/user/logout",
+				Handler: user.UserLogoutHandler(serverCtx),
+			},
+			{
 				// 用户注册
 				Method:  http.MethodPost,
 				Path:    "/user/register",
