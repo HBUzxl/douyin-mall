@@ -16,6 +16,15 @@ type Config struct {
 		Type string
 		Pass string
 	}
+
+	MySQL struct {
+		DSN             string
+		MaxOpenConns    int
+		MaxIdleConns    int
+		ConnMaxLifetime int
+	}
+
+	CasbinModel string
 }
 
 type Swagger struct {
