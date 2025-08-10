@@ -3,6 +3,14 @@
 
 package types
 
+type AddProductToCartReq struct {
+	Item CartItem `json:"item"`
+}
+
+type AddProductToCartResp struct {
+	Item CartItem `json:"item"`
+}
+
 type ClearCartReq struct {
 }
 

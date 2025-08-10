@@ -25,10 +25,19 @@ message ClearCartResp {
   string user_uuid = 1 [json_name = "user_uuid"];
 }
 
+message AddProductToCartReq {
+  CartItem item = 1 [json_name = "item"];
+}
+
+message AddProductToCartResp {
+  CartItem item = 1 [json_name = "item"];
+}
 
 service Cart {
   // 获取购物车
   rpc GetCart(GetCartReq) returns (GetCartResp);
   // 清空购物车
   rpc ClearCart(ClearCartReq) returns (ClearCartResp);
+  // 添加商品到购物车
+  rpc AddProductToCart(AddProductToCartReq) returns (AddProductToCartResp);
 }

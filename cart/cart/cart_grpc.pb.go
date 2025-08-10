@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Cart_GetCart_FullMethodName   = "/cart.Cart/GetCart"
-	Cart_ClearCart_FullMethodName = "/cart.Cart/ClearCart"
+	Cart_GetCart_FullMethodName          = "/cart.Cart/GetCart"
+	Cart_ClearCart_FullMethodName        = "/cart.Cart/ClearCart"
+	Cart_AddProductToCart_FullMethodName = "/cart.Cart/AddProductToCart"
 )
 
 // CartClient is the client API for Cart service.
@@ -31,6 +32,8 @@ type CartClient interface {
 	GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error)
 	// 清空购物车
 	ClearCart(ctx context.Context, in *ClearCartReq, opts ...grpc.CallOption) (*ClearCartResp, error)
+	// 添加商品到购物车
+	AddProductToCart(ctx context.Context, in *AddProductToCartReq, opts ...grpc.CallOption) (*AddProductToCartResp, error)
 }
 
 type cartClient struct {
@@ -59,6 +62,15 @@ func (c *cartClient) ClearCart(ctx context.Context, in *ClearCartReq, opts ...gr
 	return out, nil
 }
 
+func (c *cartClient) AddProductToCart(ctx context.Context, in *AddProductToCartReq, opts ...grpc.CallOption) (*AddProductToCartResp, error) {
+	out := new(AddProductToCartResp)
+	err := c.cc.Invoke(ctx, Cart_AddProductToCart_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CartServer is the server API for Cart service.
 // All implementations must embed UnimplementedCartServer
 // for forward compatibility
@@ -67,6 +79,8 @@ type CartServer interface {
 	GetCart(context.Context, *GetCartReq) (*GetCartResp, error)
 	// 清空购物车
 	ClearCart(context.Context, *ClearCartReq) (*ClearCartResp, error)
+	// 添加商品到购物车
+	AddProductToCart(context.Context, *AddProductToCartReq) (*AddProductToCartResp, error)
 	mustEmbedUnimplementedCartServer()
 }
 
@@ -79,6 +93,9 @@ func (UnimplementedCartServer) GetCart(context.Context, *GetCartReq) (*GetCartRe
 }
 func (UnimplementedCartServer) ClearCart(context.Context, *ClearCartReq) (*ClearCartResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClearCart not implemented")
+}
+func (UnimplementedCartServer) AddProductToCart(context.Context, *AddProductToCartReq) (*AddProductToCartResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddProductToCart not implemented")
 }
 func (UnimplementedCartServer) mustEmbedUnimplementedCartServer() {}
 
@@ -129,6 +146,24 @@ func _Cart_ClearCart_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cart_AddProductToCart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddProductToCartReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CartServer).AddProductToCart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cart_AddProductToCart_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CartServer).AddProductToCart(ctx, req.(*AddProductToCartReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cart_ServiceDesc is the grpc.ServiceDesc for Cart service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -143,6 +178,10 @@ var Cart_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ClearCart",
 			Handler:    _Cart_ClearCart_Handler,
+		},
+		{
+			MethodName: "AddProductToCart",
+			Handler:    _Cart_AddProductToCart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

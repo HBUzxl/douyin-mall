@@ -14,17 +14,21 @@ import (
 )
 
 type (
-	CartItem      = cart.CartItem
-	ClearCartReq  = cart.ClearCartReq
-	ClearCartResp = cart.ClearCartResp
-	GetCartReq    = cart.GetCartReq
-	GetCartResp   = cart.GetCartResp
+	AddProductToCartReq  = cart.AddProductToCartReq
+	AddProductToCartResp = cart.AddProductToCartResp
+	CartItem             = cart.CartItem
+	ClearCartReq         = cart.ClearCartReq
+	ClearCartResp        = cart.ClearCartResp
+	GetCartReq           = cart.GetCartReq
+	GetCartResp          = cart.GetCartResp
 
 	Cart interface {
 		// 获取购物车
 		GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error)
 		// 清空购物车
 		ClearCart(ctx context.Context, in *ClearCartReq, opts ...grpc.CallOption) (*ClearCartResp, error)
+		// 添加商品到购物车
+		AddProductToCart(ctx context.Context, in *AddProductToCartReq, opts ...grpc.CallOption) (*AddProductToCartResp, error)
 	}
 
 	defaultCart struct {
@@ -48,4 +52,10 @@ func (m *defaultCart) GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.
 func (m *defaultCart) ClearCart(ctx context.Context, in *ClearCartReq, opts ...grpc.CallOption) (*ClearCartResp, error) {
 	client := cart.NewCartClient(m.cli.Conn())
 	return client.ClearCart(ctx, in, opts...)
+}
+
+// 添加商品到购物车
+func (m *defaultCart) AddProductToCart(ctx context.Context, in *AddProductToCartReq, opts ...grpc.CallOption) (*AddProductToCartResp, error) {
+	client := cart.NewCartClient(m.cli.Conn())
+	return client.AddProductToCart(ctx, in, opts...)
 }

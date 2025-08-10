@@ -24,6 +24,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: cart.GetCartHandler(serverCtx),
 			},
 			{
+				// 添加商品到购物车
+				Method:  http.MethodPost,
+				Path:    "/cart/add_product",
+				Handler: cart.AddProductToCartHandler(serverCtx),
+			},
+			{
 				// 清空购物车
 				Method:  http.MethodPost,
 				Path:    "/cart/clear",

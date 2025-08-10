@@ -79,6 +79,78 @@
         }
       }
     },
+    "/api/v1/cart/add_product": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "添加商品到购物车",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "required": [
+                    "product_uuid",
+                    "quantity"
+                  ],
+                  "properties": {
+                    "product_uuid": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "item": {
+                  "type": "object",
+                  "required": [
+                    "product_uuid",
+                    "quantity"
+                  ],
+                  "properties": {
+                    "product_uuid": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/cart/clear": {
       "post": {
         "consumes": [
@@ -394,7 +466,7 @@
       }
     }
   },
-  "x-date": "2025-08-10 19:11:56",
+  "x-date": "2025-08-10 19:21:19",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

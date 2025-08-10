@@ -18,6 +18,14 @@ type ClearCartResp {
     UserUuid string `json:"user_uuid"`
 }
 
+type AddProductToCartReq {
+    Item CartItem `json:"item"`
+}
+
+type AddProductToCartResp {
+    Item CartItem `json:"item"`
+}
+
 @server (
     group: cart
     prefix: api/v1
@@ -35,4 +43,10 @@ service atlas-api {
     )
     @handler clearCart
     post /cart/clear (ClearCartReq) returns (ClearCartResp)
+
+    @doc(
+        summary: "添加商品到购物车"
+    )
+    @handler addProductToCart
+    post /cart/add_product (AddProductToCartReq) returns (AddProductToCartResp)
 }

@@ -34,3 +34,9 @@ func (s *CartServer) ClearCart(ctx context.Context, in *cart.ClearCartReq) (*car
 	l := logic.NewClearCartLogic(ctx, s.svcCtx)
 	return l.ClearCart(in)
 }
+
+// 添加商品到购物车
+func (s *CartServer) AddProductToCart(ctx context.Context, in *cart.AddProductToCartReq) (*cart.AddProductToCartResp, error) {
+	l := logic.NewAddProductToCartLogic(ctx, s.svcCtx)
+	return l.AddProductToCart(in)
+}
