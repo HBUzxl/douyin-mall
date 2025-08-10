@@ -41,6 +41,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: user.UserLogoutHandler(serverCtx),
 			},
 			{
+				// 刷新token
+				Method:  http.MethodPost,
+				Path:    "/user/refresh-token",
+				Handler: user.UserRefreshTokenHandler(serverCtx),
+			},
+			{
 				// 用户注册
 				Method:  http.MethodPost,
 				Path:    "/user/register",

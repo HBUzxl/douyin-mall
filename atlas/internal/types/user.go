@@ -20,6 +20,15 @@ type LogoutResp struct {
 	Ok bool `json:"ok"`
 }
 
+type RefreshTokenReq struct {
+	RefreshToken string `form:"refresh_token"`
+}
+
+type RefreshTokenResp struct {
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
+}
+
 type RegisterReq struct {
 	Email           string `form:"email"`
 	Password        string `form:"password"`

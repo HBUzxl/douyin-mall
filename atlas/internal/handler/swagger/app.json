@@ -113,10 +113,40 @@
           ""
         ],
         "summary": "用户退出",
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ok": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/refresh-token": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "刷新token",
         "parameters": [
           {
             "type": "string",
-            "name": "token",
+            "name": "refresh_token",
             "in": "formData",
             "required": true
           }
@@ -127,8 +157,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "ok": {
-                  "type": "boolean"
+                "refresh_token": {
+                  "type": "string"
+                },
+                "token": {
+                  "type": "string"
                 }
               }
             }
@@ -187,7 +220,7 @@
       }
     }
   },
-  "x-date": "2025-08-10 17:32:55",
+  "x-date": "2025-08-10 17:45:24",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",
