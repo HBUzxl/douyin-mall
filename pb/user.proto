@@ -23,10 +23,21 @@ message RegisterResp {
   string user_uuid = 1 [json_name = "user_uuid"];
 }
 
+message GetUserInfoReq {
+  string user_uuid = 1 [json_name = "user_uuid"];
+}
+
+message GetUserInfoResp {
+  string email = 1 [json_name = "email"];
+}
+
 service User {
   // 用户登录
   rpc Login(LoginReq) returns(LoginResp);
 
   // 用户注册
   rpc Register(RegisterReq) returns(RegisterResp);
+
+  // 获取用户信息
+  rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp);
 }

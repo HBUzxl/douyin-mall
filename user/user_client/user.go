@@ -14,16 +14,20 @@ import (
 )
 
 type (
-	LoginReq     = user.LoginReq
-	LoginResp    = user.LoginResp
-	RegisterReq  = user.RegisterReq
-	RegisterResp = user.RegisterResp
+	GetUserInfoReq  = user.GetUserInfoReq
+	GetUserInfoResp = user.GetUserInfoResp
+	LoginReq        = user.LoginReq
+	LoginResp       = user.LoginResp
+	RegisterReq     = user.RegisterReq
+	RegisterResp    = user.RegisterResp
 
 	User interface {
 		// 用户登录
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
 		// 用户注册
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
+		// 获取用户信息
+		GetUserInfo(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error)
 	}
 
 	defaultUser struct {
@@ -47,4 +51,10 @@ func (m *defaultUser) Login(ctx context.Context, in *LoginReq, opts ...grpc.Call
 func (m *defaultUser) Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error) {
 	client := user.NewUserClient(m.cli.Conn())
 	return client.Register(ctx, in, opts...)
+}
+
+// 获取用户信息
+func (m *defaultUser) GetUserInfo(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error) {
+	client := user.NewUserClient(m.cli.Conn())
+	return client.GetUserInfo(ctx, in, opts...)
 }

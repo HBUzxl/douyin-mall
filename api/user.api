@@ -34,6 +34,15 @@ type RefreshTokenResp {
     RefreshToken string `json:"refresh_token"`
 }
 
+type GetUserInfoReq {   
+}
+
+type GetUserInfoResp {
+    Email string `json:"email"`
+    Roles []string `json:"roles"`
+}
+
+
 @server (
     group: user
     prefix: api/v1
@@ -63,4 +72,10 @@ service atlas-api {
     )
     @handler userRefreshToken
     post /user/refresh-token (RefreshTokenReq) returns (RefreshTokenResp)
+
+    @doc(
+        summary: "获取用户信息"
+    )
+    @handler userGetUserInfo
+    get /user/info (GetUserInfoReq) returns (GetUserInfoResp)
 }

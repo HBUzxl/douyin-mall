@@ -3,6 +3,14 @@
 
 package types
 
+type GetUserInfoReq struct {
+}
+
+type GetUserInfoResp struct {
+	Email string   `json:"email"`
+	Roles []string `json:"roles"`
+}
+
 type LoginReq struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
