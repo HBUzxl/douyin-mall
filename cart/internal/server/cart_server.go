@@ -28,3 +28,9 @@ func (s *CartServer) GetCart(ctx context.Context, in *cart.GetCartReq) (*cart.Ge
 	l := logic.NewGetCartLogic(ctx, s.svcCtx)
 	return l.GetCart(in)
 }
+
+// 清空购物车
+func (s *CartServer) ClearCart(ctx context.Context, in *cart.ClearCartReq) (*cart.ClearCartResp, error) {
+	l := logic.NewClearCartLogic(ctx, s.svcCtx)
+	return l.ClearCart(in)
+}

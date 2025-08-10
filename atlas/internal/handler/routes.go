@@ -23,6 +23,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/cart",
 				Handler: cart.GetCartHandler(serverCtx),
 			},
+			{
+				// 清空购物车
+				Method:  http.MethodPost,
+				Path:    "/cart/clear",
+				Handler: cart.ClearCartHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api/v1"),
 	)

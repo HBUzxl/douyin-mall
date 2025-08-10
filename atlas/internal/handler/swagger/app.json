@@ -79,6 +79,36 @@
         }
       }
     },
+    "/api/v1/cart/clear": {
+      "post": {
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "清空购物车",
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_uuid": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/ping": {
       "get": {
         "produces": [
@@ -364,7 +394,7 @@
       }
     }
   },
-  "x-date": "2025-08-10 19:05:09",
+  "x-date": "2025-08-10 19:11:56",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

@@ -17,8 +17,18 @@ message CartItem {
   int64 quantity = 3 [json_name = "quantity"];
 }
 
+message ClearCartReq {
+  string user_uuid = 1 [json_name = "user_uuid"];
+}
+
+message ClearCartResp {
+  string user_uuid = 1 [json_name = "user_uuid"];
+}
+
 
 service Cart {
   // 获取购物车
-  rpc GetCart(GetCartReq) returns(GetCartResp);
+  rpc GetCart(GetCartReq) returns (GetCartResp);
+  // 清空购物车
+  rpc ClearCart(ClearCartReq) returns (ClearCartResp);
 }

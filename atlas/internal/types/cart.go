@@ -3,6 +3,13 @@
 
 package types
 
+type ClearCartReq struct {
+}
+
+type ClearCartResp struct {
+	UserUuid string `json:"user_uuid"`
+}
+
 type GetCartReq struct {
 	UserUuid string `json:"user_uuid"`
 }

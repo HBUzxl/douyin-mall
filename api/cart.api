@@ -12,6 +12,12 @@ type GetCartResp {
     CartItems []CartItem `json:"cart_items"`
 }
 
+type ClearCartReq {
+}
+type ClearCartResp {
+    UserUuid string `json:"user_uuid"`
+}
+
 @server (
     group: cart
     prefix: api/v1
@@ -23,4 +29,10 @@ service atlas-api {
     )
     @handler getCart
     get /cart (GetCartReq) returns (GetCartResp)
+
+    @doc(
+        summary: "清空购物车"
+    )
+    @handler clearCart
+    post /cart/clear (ClearCartReq) returns (ClearCartResp)
 }

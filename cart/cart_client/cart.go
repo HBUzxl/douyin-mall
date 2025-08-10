@@ -14,13 +14,17 @@ import (
 )
 
 type (
-	CartItem    = cart.CartItem
-	GetCartReq  = cart.GetCartReq
-	GetCartResp = cart.GetCartResp
+	CartItem      = cart.CartItem
+	ClearCartReq  = cart.ClearCartReq
+	ClearCartResp = cart.ClearCartResp
+	GetCartReq    = cart.GetCartReq
+	GetCartResp   = cart.GetCartResp
 
 	Cart interface {
 		// 获取购物车
 		GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error)
+		// 清空购物车
+		ClearCart(ctx context.Context, in *ClearCartReq, opts ...grpc.CallOption) (*ClearCartResp, error)
 	}
 
 	defaultCart struct {
@@ -38,4 +42,10 @@ func NewCart(cli zrpc.Client) Cart {
 func (m *defaultCart) GetCart(ctx context.Context, in *GetCartReq, opts ...grpc.CallOption) (*GetCartResp, error) {
 	client := cart.NewCartClient(m.cli.Conn())
 	return client.GetCart(ctx, in, opts...)
+}
+
+// 清空购物车
+func (m *defaultCart) ClearCart(ctx context.Context, in *ClearCartReq, opts ...grpc.CallOption) (*ClearCartResp, error) {
+	client := cart.NewCartClient(m.cli.Conn())
+	return client.ClearCart(ctx, in, opts...)
 }
