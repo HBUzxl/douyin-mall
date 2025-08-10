@@ -10,6 +10,7 @@ type Config struct {
 	Swagger Swagger
 	UserRpc zrpc.RpcClientConf
 	AuthRpc zrpc.RpcClientConf
+	CartRpc zrpc.RpcClientConf
 
 	Redis struct {
 		Host string
