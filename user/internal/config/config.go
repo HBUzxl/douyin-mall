@@ -13,4 +13,6 @@ type Config struct {
 		MaxIdleConns    int
 		ConnMaxLifetime int
 	}
+
+	NodeID int64
 }
