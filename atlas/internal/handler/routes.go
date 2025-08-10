@@ -35,6 +35,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: user.UserLoginHandler(serverCtx),
 			},
 			{
+				// 添加用户黑名单
+				Method:  http.MethodPost,
+				Path:    "/user/blacklist",
+				Handler: user.UserAddUserBlacklistHandler(serverCtx),
+			},
+			{
 				// 获取用户信息
 				Method:  http.MethodGet,
 				Path:    "/user/info",

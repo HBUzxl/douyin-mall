@@ -42,6 +42,14 @@ type GetUserInfoResp {
     Roles []string `json:"roles"`
 }
 
+type AddUserBlacklistReq {
+    UserUuid string `json:"user_uuid"`
+}
+
+type AddUserBlacklistResp {
+    Ok bool `json:"ok"`
+}
+
 
 @server (
     group: user
@@ -78,4 +86,10 @@ service atlas-api {
     )
     @handler userGetUserInfo
     get /user/info (GetUserInfoReq) returns (GetUserInfoResp)
+
+    @doc(
+        summary: "添加用户黑名单"
+    )
+    @handler userAddUserBlacklist
+    post /user/blacklist (AddUserBlacklistReq) returns (AddUserBlacklistResp)
 }

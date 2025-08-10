@@ -3,6 +3,14 @@
 
 package types
 
+type AddUserBlacklistReq struct {
+	UserUuid string `json:"user_uuid"`
+}
+
+type AddUserBlacklistResp struct {
+	Ok bool `json:"ok"`
+}
+
 type GetUserInfoReq struct {
 }
 
