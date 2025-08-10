@@ -1,13 +1,25 @@
 package svc
 
-import "github.com/HBUzxl/douyin-mall/user/internal/config"
+import (
+	"fmt"
+
+	"github.com/HBUzxl/douyin-mall/user/internal/config"
+	"github.com/HBUzxl/douyin-mall/user/internal/dal"
+	"gorm.io/gorm"
+)
 
 type ServiceContext struct {
 	Config config.Config
+	DB     *gorm.DB
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
+	db, err := dal.NewDB(&c)
+	if err != nil {
+		panic(fmt.Sprintf("new database failed, %v", err))
+	}
 	return &ServiceContext{
 		Config: c,
+		DB:     db,
 	}
 }
