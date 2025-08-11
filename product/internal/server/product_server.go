@@ -34,3 +34,9 @@ func (s *ProductServer) DeleteProduct(ctx context.Context, in *product.DeletePro
 	l := logic.NewDeleteProductLogic(ctx, s.svcCtx)
 	return l.DeleteProduct(in)
 }
+
+// 获取商品
+func (s *ProductServer) GetProduct(ctx context.Context, in *product.GetProductReq) (*product.GetProductResp, error) {
+	l := logic.NewGetProductLogic(ctx, s.svcCtx)
+	return l.GetProduct(in)
+}

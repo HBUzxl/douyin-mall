@@ -25,6 +25,13 @@ type DeleteProductResp {
     Uuid string `json:"uuid"`
 }
 
+type GetProductReq {
+    Uuid string `form:"uuid"`
+}
+
+type GetProductResp {
+    Product Product `json:"product"`
+}
 
 @server (
     group: product
@@ -43,4 +50,10 @@ service atlas-api {
     )
     @handler deleteProduct
     delete /product (DeleteProductReq) returns (DeleteProductResp)
+
+    @doc(
+        summary: "获取商品"
+    )
+    @handler getProduct
+    get /product/get (GetProductReq) returns (GetProductResp)
 }

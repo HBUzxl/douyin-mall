@@ -21,3 +21,11 @@ type DeleteProductReq struct {
 type DeleteProductResp struct {
 	Uuid string `json:"uuid"`
 }
+
+type GetProductReq struct {
+	Uuid string `form:"uuid"`
+}
+
+type GetProductResp struct {
+	Product Product `json:"product"`
+}
