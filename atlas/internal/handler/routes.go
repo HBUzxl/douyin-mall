@@ -60,6 +60,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/product",
 				Handler: product.CreateProductHandler(serverCtx),
 			},
+			{
+				// 删除商品
+				Method:  http.MethodDelete,
+				Path:    "/product",
+				Handler: product.DeleteProductHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api/v1"),
 	)

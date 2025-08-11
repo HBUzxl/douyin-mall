@@ -16,10 +16,15 @@ import (
 type (
 	CreateProductReq  = product.CreateProductReq
 	CreateProductResp = product.CreateProductResp
+	DeleteProductReq  = product.DeleteProductReq
+	DeleteProductResp = product.DeleteProductResp
 	Product           = product.Product
 
 	ProductZrpcClient interface {
+		// 创建商品
 		CreateProduct(ctx context.Context, in *CreateProductReq, opts ...grpc.CallOption) (*CreateProductResp, error)
+		// 删除商品
+		DeleteProduct(ctx context.Context, in *DeleteProductReq, opts ...grpc.CallOption) (*DeleteProductResp, error)
 	}
 
 	defaultProductZrpcClient struct {
@@ -33,7 +38,14 @@ func NewProductZrpcClient(cli zrpc.Client) ProductZrpcClient {
 	}
 }
 
+// 创建商品
 func (m *defaultProductZrpcClient) CreateProduct(ctx context.Context, in *CreateProductReq, opts ...grpc.CallOption) (*CreateProductResp, error) {
 	client := product.NewProductClient(m.cli.Conn())
 	return client.CreateProduct(ctx, in, opts...)
+}
+
+// 删除商品
+func (m *defaultProductZrpcClient) DeleteProduct(ctx context.Context, in *DeleteProductReq, opts ...grpc.CallOption) (*DeleteProductResp, error) {
+	client := product.NewProductClient(m.cli.Conn())
+	return client.DeleteProduct(ctx, in, opts...)
 }

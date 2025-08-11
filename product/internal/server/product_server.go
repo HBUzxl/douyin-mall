@@ -23,7 +23,14 @@ func NewProductServer(svcCtx *svc.ServiceContext) *ProductServer {
 	}
 }
 
+// 创建商品
 func (s *ProductServer) CreateProduct(ctx context.Context, in *product.CreateProductReq) (*product.CreateProductResp, error) {
 	l := logic.NewCreateProductLogic(ctx, s.svcCtx)
 	return l.CreateProduct(in)
+}
+
+// 删除商品
+func (s *ProductServer) DeleteProduct(ctx context.Context, in *product.DeleteProductReq) (*product.DeleteProductResp, error) {
+	l := logic.NewDeleteProductLogic(ctx, s.svcCtx)
+	return l.DeleteProduct(in)
 }

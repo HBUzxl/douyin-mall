@@ -22,6 +22,17 @@ message CreateProductResp {
   Product product = 1 [json_name = "product"];
 }
 
+message DeleteProductReq {
+  string uuid = 1 [json_name = "uuid"];
+}
+
+message DeleteProductResp {
+  string uuid = 1 [json_name = "uuid"];
+}
+
 service product {
+  // 创建商品
   rpc CreateProduct(CreateProductReq) returns(CreateProductResp);
+  // 删除商品
+  rpc DeleteProduct(DeleteProductReq) returns(DeleteProductResp);
 }

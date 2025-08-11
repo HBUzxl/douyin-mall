@@ -17,6 +17,14 @@ type CreateProductResp {
     Product Product `json:"product"`
 }
 
+type DeleteProductReq {
+    Uuid string `json:"uuid"`
+}
+
+type DeleteProductResp {
+    Uuid string `json:"uuid"`
+}
+
 
 @server (
     group: product
@@ -29,4 +37,10 @@ service atlas-api {
     )
     @handler createProduct
     post /product (CreateProductReq) returns (CreateProductResp)
+
+    @doc(
+        summary: "删除商品"
+    )
+    @handler deleteProduct
+    delete /product (DeleteProductReq) returns (DeleteProductResp)
 }
