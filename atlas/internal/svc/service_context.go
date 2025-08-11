@@ -19,7 +19,7 @@ type ServiceContext struct {
 	UserRpc    user_client.User
 	AuthRpc    auth_client.Auth
 	CartRpc    cart_client.Cart
-	ProductRpc product_client.Product
+	ProductRpc product_client.ProductZrpcClient
 
 	Db    *gorm.DB
 	Redis *redis.Redis
@@ -32,7 +32,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	userRpc := user_client.NewUser(zrpc.MustNewClient(c.UserRpc))
 	authRpc := auth_client.NewAuth(zrpc.MustNewClient(c.AuthRpc))
 	cartRpc := cart_client.NewCart(zrpc.MustNewClient(c.CartRpc))
-	productRpc := product_client.NewProduct(zrpc.MustNewClient(c.ProductRpc))
+	productRpc := product_client.NewProductZrpcClient(zrpc.MustNewClient(c.ProductRpc))
 
 	db, err := dal.NewDB(&c)
 	if err != nil {
