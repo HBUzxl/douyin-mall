@@ -17,7 +17,9 @@ api: ## 自动生成 API 代码
 		goctl rpc protoc ${workdir}/pb/user.proto --style=go_zero --proto_path=${workdir}/pb/ \
 			--go_out=${workdir}/user --go-grpc_out=${workdir}/user --zrpc_out=${workdir}/user && \
 		goctl rpc protoc ${workdir}/pb/cart.proto --style=go_zero --proto_path=${workdir}/pb/ \
-			--go_out=${workdir}/cart --go-grpc_out=${workdir}/cart --zrpc_out=${workdir}/cart \
+			--go_out=${workdir}/cart --go-grpc_out=${workdir}/cart --zrpc_out=${workdir}/cart &&\
+		goctl rpc protoc ${workdir}/pb/product.proto --style=go_zero --proto_path=${workdir}/pb/ \
+			--go_out=${workdir}/product --go-grpc_out=${workdir}/product --zrpc_out=${workdir}/product \
 		"
 	@echo "生成swagger文件并运行"
 	@/bin/sh -c "goctl api swagger --api ./api/app.api --dir atlas/internal/handler/swagger --filename app"

@@ -3,8 +3,7 @@ package response
 import (
 	"net/http"
 
-	"douyin-mall/common/errorx"
-
+	"github.com/HBUzxl/douyin-mall/common/errorx"
 	"github.com/pingcap/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/trace"

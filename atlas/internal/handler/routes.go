@@ -6,8 +6,8 @@ package handler
 import (
 	"net/http"
 
+	auth "github.com/HBUzxl/douyin-mall/atlas/internal/handler/auth"
 	cart "github.com/HBUzxl/douyin-mall/atlas/internal/handler/cart"
-	test "github.com/HBUzxl/douyin-mall/atlas/internal/handler/test"
 	user "github.com/HBUzxl/douyin-mall/atlas/internal/handler/user"
 	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
 
@@ -15,6 +15,18 @@ import (
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// test
+				Method:  http.MethodGet,
+				Path:    "/auth/ping",
+				Handler: auth.PingHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1"),
+	)
+
 	server.AddRoutes(
 		[]rest.Route{
 			{
@@ -40,14 +52,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				// test
-				Method:  http.MethodGet,
-				Path:    "/ping",
-				Handler: test.PingHandler(serverCtx),
-			},
-		},
+		[]rest.Route{},
 		rest.WithPrefix("/api/v1"),
 	)
 

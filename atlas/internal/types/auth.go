@@ -3,6 +3,9 @@
 
 package types
 
+type PingReq struct {
+}
+
 type PingResp struct {
 	Info string `json:"info"`
 }

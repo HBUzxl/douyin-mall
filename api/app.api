@@ -8,7 +8,7 @@ info (
 )
 
 import (
-	// "auth.api"
+	"auth.api"
 	"cart.api"
 	// "checkout.api"
 	// "eino.api"
@@ -18,21 +18,9 @@ import (
 	"user.api"
 )
 
-type (
-	PingResp {
-		Info string `json:"info"`
-	}
-)
-
 @server (
 	group:  test
 	prefix: /api/v1
 )
-service atlas-api {
-	@doc (
-		summary: "test"
-	)
-	@handler Ping
-	get /ping returns (PingResp)
-}
+service atlas-api {}
 

@@ -4,13 +4,14 @@ go 1.24.1
 
 require (
 	github.com/HBUzxl/douyin-mall/auth v0.0.0-20250806084240-3ee0ce3eb113
+	github.com/HBUzxl/douyin-mall/cart v0.0.0-20250810114319-1cf2666a9630
 	github.com/HBUzxl/douyin-mall/common v0.0.0-20250806084240-3ee0ce3eb113
 	github.com/HBUzxl/douyin-mall/user v0.0.0-20250806084240-3ee0ce3eb113
 	github.com/casbin/casbin/v2 v2.100.0
 	github.com/casbin/gorm-adapter/v3 v3.36.0
 	github.com/zeromicro/go-zero v1.8.5
 	github.com/zeromicro/go-zero/tools/goctl v1.8.5
-	gorm.io/driver/mysql v1.5.7
+	gorm.io/driver/mysql v1.6.0
 	gorm.io/gorm v1.30.1
 )
 

@@ -3,6 +3,7 @@ module github.com/HBUzxl/douyin-mall/cart
 go 1.24.1
 
 require (
+	github.com/HBUzxl/douyin-mall/common v0.0.0-20250810114319-1cf2666a9630
 	github.com/zeromicro/go-zero v1.8.5
 	github.com/zeromicro/go-zero/tools/goctl v1.8.5
 	google.golang.org/grpc v1.74.2
@@ -14,6 +15,7 @@ require (
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/bwmarrin/snowflake v0.3.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
@@ -29,6 +31,7 @@ require (
 	github.com/go-openapi/swag v0.23.1 // indirect
 	github.com/go-sql-driver/mysql v1.9.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/gnostic-models v0.6.8 // indirect
@@ -90,7 +93,7 @@ require (
 	k8s.io/api v0.29.3 // indirect
 	k8s.io/apimachinery v0.29.4 // indirect
 	k8s.io/client-go v0.29.3 // indirect
-	k8s.io/klog/v2 v2.110.1 // indirect
+	k8s.io/klog/v2 v2.130.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20231010175941-2dd684a91f00 // indirect
 	k8s.io/utils v0.0.0-20240711033017-18e509b52bc8 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
