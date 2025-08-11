@@ -5,6 +5,7 @@ import (
 	"github.com/HBUzxl/douyin-mall/atlas/internal/dal"
 	"github.com/HBUzxl/douyin-mall/auth/auth_client"
 	"github.com/HBUzxl/douyin-mall/cart/cart_client"
+	"github.com/HBUzxl/douyin-mall/product/product_client"
 	"github.com/HBUzxl/douyin-mall/user/user_client"
 	"github.com/casbin/casbin/v2"
 	"github.com/zeromicro/go-zero/core/stores/redis"
@@ -15,9 +16,10 @@ import (
 type ServiceContext struct {
 	Config config.Config
 
-	UserRpc user_client.User
-	AuthRpc auth_client.Auth
-	CartRpc cart_client.Cart
+	UserRpc    user_client.User
+	AuthRpc    auth_client.Auth
+	CartRpc    cart_client.Cart
+	ProductRpc product_client.Product
 
 	Db    *gorm.DB
 	Redis *redis.Redis
@@ -30,6 +32,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	userRpc := user_client.NewUser(zrpc.MustNewClient(c.UserRpc))
 	authRpc := auth_client.NewAuth(zrpc.MustNewClient(c.AuthRpc))
 	cartRpc := cart_client.NewCart(zrpc.MustNewClient(c.CartRpc))
+	productRpc := product_client.NewProduct(zrpc.MustNewClient(c.ProductRpc))
 
 	db, err := dal.NewDB(&c)
 	if err != nil {
@@ -44,9 +47,10 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
 		Config: c,
 
-		UserRpc: userRpc,
-		AuthRpc: authRpc,
-		CartRpc: cartRpc,
+		UserRpc:    userRpc,
+		AuthRpc:    authRpc,
+		CartRpc:    cartRpc,
+		ProductRpc: productRpc,
 
 		Redis: redis.New(c.Redis.Host, func(r *redis.Redis) {
 			r.Type = c.Redis.Type

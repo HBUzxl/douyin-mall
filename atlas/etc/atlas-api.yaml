@@ -27,4 +27,11 @@ CartRpc:
     Key: cart.rpc
   NonBlock: true
 
+ProductRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: product.rpc
+  NonBlock: true
+
 CasbinModel: "etc/casbin.conf"

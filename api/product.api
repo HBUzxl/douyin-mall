@@ -1,0 +1,32 @@
+type Product {
+    Uuid string `json:"uuid"`
+    Name string `json:"name"`
+    Price int64 `json:"price"`
+    Stock int64 `json:"stock"`
+    Description string `json:"description"`
+}
+
+type CreateProductReq {
+    Name string `json:"name"`
+    Price int64 `json:"price"`
+    Stock int64 `json:"stock"`
+    Description string `json:"description"`
+}
+
+type CreateProductResp {
+    Product Product `json:"product"`
+}
+
+
+@server (
+    group: product
+    prefix: api/v1
+)
+
+service atlas-api {
+    @doc(
+        summary: "创建商品"
+    )
+    @handler createProduct
+    post /product (CreateProductReq) returns (CreateProductResp)
+}

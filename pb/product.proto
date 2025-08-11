@@ -3,14 +3,25 @@ syntax = "proto3";
 package product;
 option go_package="./product";
 
-message Request {
-  string ping = 1;
+message Product {
+  string uuid = 1 [json_name = "uuid"];
+  string name = 2 [json_name = "name"];
+  int64 price = 3 [json_name = "price"];
+  int64 stock = 4 [json_name = "stock"];
+  string description = 5 [json_name = "description"];
 }
 
-message Response {
-  string pong = 1;
+message CreateProductReq {
+  string name = 1 [json_name = "name"];
+  int64 price = 2 [json_name = "price"];
+  int64 stock = 3 [json_name = "stock"];
+  string description = 4 [json_name = "description"];
 }
 
-service Product {
-  rpc Ping(Request) returns(Response);
+message CreateProductResp {
+  Product product = 1 [json_name = "product"];
+}
+
+service product {
+  rpc CreateProduct(CreateProductReq) returns(CreateProductResp);
 }

@@ -3,15 +3,13 @@
 
 package types
 
-type CartItem struct {
-	ProductUuid string `json:"product_uuid"`
-	Quantity    int64  `json:"quantity"`
-}
-
-type Product struct {
-	Uuid        string `json:"uuid"`
+type CreateProductReq struct {
 	Name        string `json:"name"`
 	Price       int64  `json:"price"`
 	Stock       int64  `json:"stock"`
 	Description string `json:"description"`
+}
+
+type CreateProductResp struct {
+	Product Product `json:"product"`
 }

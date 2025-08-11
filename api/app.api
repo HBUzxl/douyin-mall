@@ -14,7 +14,7 @@ import (
 	// "eino.api"
 	// "order.api"
 	// "payment.api"
-	// "product.api"
+	"product.api"
 	"user.api"
 )
 

@@ -7,10 +7,11 @@ import (
 
 type Config struct {
 	rest.RestConf
-	Swagger Swagger
-	UserRpc zrpc.RpcClientConf
-	AuthRpc zrpc.RpcClientConf
-	CartRpc zrpc.RpcClientConf
+	Swagger    Swagger
+	UserRpc    zrpc.RpcClientConf
+	AuthRpc    zrpc.RpcClientConf
+	CartRpc    zrpc.RpcClientConf
+	ProductRpc zrpc.RpcClientConf
 
 	Redis struct {
 		Host string

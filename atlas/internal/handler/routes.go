@@ -8,6 +8,7 @@ import (
 
 	auth "github.com/HBUzxl/douyin-mall/atlas/internal/handler/auth"
 	cart "github.com/HBUzxl/douyin-mall/atlas/internal/handler/cart"
+	product "github.com/HBUzxl/douyin-mall/atlas/internal/handler/product"
 	user "github.com/HBUzxl/douyin-mall/atlas/internal/handler/user"
 	"github.com/HBUzxl/douyin-mall/atlas/internal/svc"
 
@@ -46,6 +47,18 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Method:  http.MethodPost,
 				Path:    "/cart/clear",
 				Handler: cart.ClearCartHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/v1"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				// 创建商品
+				Method:  http.MethodPost,
+				Path:    "/product",
+				Handler: product.CreateProductHandler(serverCtx),
 			},
 		},
 		rest.WithPrefix("/api/v1"),
