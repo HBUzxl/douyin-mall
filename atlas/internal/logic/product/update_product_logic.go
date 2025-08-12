@@ -28,7 +28,13 @@ func NewUpdateProductLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Upd
 func (l *UpdateProductLogic) UpdateProduct(req *types.UpdateProductReq) (resp *types.UpdateProductResp, err error) {
 	// todo: add your logic here and delete this line
 	updateResp, err := l.svcCtx.ProductRpc.UpdateProduct(l.ctx, &product.UpdateProductReq{
-		Product: req.Product,
+		Product: &product.Product{
+			Uuid:        req.Product.Uuid,
+			Name:        req.Product.Name,
+			Price:       req.Product.Price,
+			Stock:       req.Product.Stock,
+			Description: req.Product.Description,
+		},
 	})
 	if err != nil {
 		return nil, err
