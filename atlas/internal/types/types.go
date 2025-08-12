@@ -8,6 +8,22 @@ type CartItem struct {
 	Quantity    int64  `json:"quantity"`
 }
 
+type Order struct {
+	Uuid        string               `json:"uuid"`
+	UserUuid    string               `json:"user_uuid"`
+	AddressUuid string               `json:"address_uuid"`
+	OrderItems  []OrderItemWithPrice `json:"order_items"`
+	TotalPrice  int64                `json:"total_price"`
+	Status      int64                `json:"status"`
+	CreatedAt   int64                `json:"created_at"`
+}
+
+type OrderItemWithPrice struct {
+	ProductUuid string `json:"product_uuid"`
+	Price       int64  `json:"price"`
+	Quantity    int64  `json:"quantity"`
+}
+
 type Product struct {
 	Uuid        string `json:"uuid"`
 	Name        string `json:"name"`

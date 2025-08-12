@@ -12,6 +12,7 @@ type Config struct {
 	AuthRpc    zrpc.RpcClientConf
 	CartRpc    zrpc.RpcClientConf
 	ProductRpc zrpc.RpcClientConf
+	OrderRpc   zrpc.RpcClientConf
 
 	Redis struct {
 		Host string

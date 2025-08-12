@@ -208,6 +208,90 @@
         }
       }
     },
+    "/api/v1/order/list": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "获取用户订单",
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "uuid",
+                      "user_uuid",
+                      "address_uuid",
+                      "order_items",
+                      "total_price",
+                      "status",
+                      "created_at"
+                    ],
+                    "properties": {
+                      "address_uuid": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "integer"
+                      },
+                      "order_items": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": [
+                            "product_uuid",
+                            "price",
+                            "quantity"
+                          ],
+                          "properties": {
+                            "price": {
+                              "type": "integer"
+                            },
+                            "product_uuid": {
+                              "type": "string"
+                            },
+                            "quantity": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      },
+                      "status": {
+                        "type": "integer"
+                      },
+                      "total_price": {
+                        "type": "integer"
+                      },
+                      "user_uuid": {
+                        "type": "string"
+                      },
+                      "uuid": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/product": {
       "put": {
         "consumes": [
@@ -838,7 +922,7 @@
       }
     }
   },
-  "x-date": "2025-08-12 16:04:00",
+  "x-date": "2025-08-12 16:44:55",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

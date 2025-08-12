@@ -1,0 +1,37 @@
+type OrderItemWithPrice {
+    ProductUuid string `json:"product_uuid"`
+    Price int64 `json:"price"`
+    Quantity int64 `json:"quantity"`
+}
+
+type Order {
+    Uuid string `json:"uuid"`
+    UserUuid string `json:"user_uuid"`
+    AddressUuid string `json:"address_uuid"`
+    OrderItems []OrderItemWithPrice `json:"order_items"`
+    TotalPrice int64 `json:"total_price"`
+    Status int64 `json:"status"`
+    CreatedAt int64 `json:"created_at"`
+}
+
+type GetUserOrdersReq {
+}
+
+type GetUserOrdersResp {
+    Orders []Order `json:"orders"`
+    Total int64 `json:"total"`
+}
+
+
+@server(
+    group: order
+    prefix: api/v1
+)
+
+service atlas-api {
+    @doc(
+        summary: "获取用户订单"
+    )
+    @handler getUserOrders
+    get /order/list (GetUserOrdersReq) returns (GetUserOrdersResp)
+}

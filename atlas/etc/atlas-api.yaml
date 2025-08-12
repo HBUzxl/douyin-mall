@@ -34,4 +34,11 @@ ProductRpc:
     Key: product.rpc
   NonBlock: true
 
+OrderRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: order.rpc
+  NonBlock: true
+
 CasbinModel: "etc/casbin.conf"

@@ -3,14 +3,32 @@ syntax = "proto3";
 package order;
 option go_package="./order";
 
-message Request {
-  string ping = 1;
+message OrderItem {
+  string product_uuid = 1;
+  int64 price = 2;
+  int64 quantity = 3;
 }
 
-message Response {
-  string pong = 1;
+message OrderInfo {
+  string uuid = 1;
+  string user_uuid = 2;
+  string address_uuid = 3;
+  repeated OrderItem order_items = 4;
+  int64 total_price = 5;
+  int64 status = 6;
+  int64 created_at = 7;
+}
+
+message GetUserOrdersReq {
+  string user_uuid = 1;
+}
+
+message GetUserOrdersResp {
+  repeated OrderInfo orders = 1;
+  int64 total = 2;
 }
 
 service Order {
-  rpc Ping(Request) returns(Response);
+  // 获取用户订单
+  rpc GetUserOrders(GetUserOrdersReq) returns(GetUserOrdersResp);
 }
