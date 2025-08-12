@@ -46,6 +46,19 @@ message UpdateProductResp {
   Product product = 1 [json_name = "product"];
 }
 
+message GetProductListReq {
+  int64 page = 1 [json_name = "page"];
+  int64 page_size = 2 [json_name = "page_size"];
+  optional string name = 3 [json_name = "name"];
+  optional int64 min_price = 4 [json_name = "min_price"];
+  optional int64 max_price = 5 [json_name = "max_price"];
+}
+
+message GetProductListResp {
+  repeated Product products = 1 [json_name = "products"];
+  int64 total = 2 [json_name = "total"];
+}
+
 service product {
   // 创建商品
   rpc CreateProduct(CreateProductReq) returns(CreateProductResp);
@@ -55,4 +68,6 @@ service product {
   rpc GetProduct(GetProductReq) returns(GetProductResp);
   // 更新商品
   rpc UpdateProduct(UpdateProductReq) returns(UpdateProductResp);
+  // 获取商品列表
+  rpc GetProductList(GetProductListReq) returns(GetProductListResp);
 }

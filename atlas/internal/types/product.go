@@ -22,6 +22,19 @@ type DeleteProductResp struct {
 	Uuid string `json:"uuid"`
 }
 
+type GetProductListReq struct {
+	Page     int64  `form:"page"`
+	PageSize int64  `form:"page_size"`
+	Name     string `form:"name, optional"`
+	MinPrice int64  `form:"min_price, optional"`
+	MaxPrice int64  `form:"max_price, optional"`
+}
+
+type GetProductListResp struct {
+	Total    int64     `json:"total"`
+	Products []Product `json:"products"`
+}
+
 type GetProductReq struct {
 	Uuid string `form:"uuid"`
 }

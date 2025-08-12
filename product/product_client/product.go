@@ -14,15 +14,17 @@ import (
 )
 
 type (
-	CreateProductReq  = product.CreateProductReq
-	CreateProductResp = product.CreateProductResp
-	DeleteProductReq  = product.DeleteProductReq
-	DeleteProductResp = product.DeleteProductResp
-	GetProductReq     = product.GetProductReq
-	GetProductResp    = product.GetProductResp
-	Product           = product.Product
-	UpdateProductReq  = product.UpdateProductReq
-	UpdateProductResp = product.UpdateProductResp
+	CreateProductReq   = product.CreateProductReq
+	CreateProductResp  = product.CreateProductResp
+	DeleteProductReq   = product.DeleteProductReq
+	DeleteProductResp  = product.DeleteProductResp
+	GetProductListReq  = product.GetProductListReq
+	GetProductListResp = product.GetProductListResp
+	GetProductReq      = product.GetProductReq
+	GetProductResp     = product.GetProductResp
+	Product            = product.Product
+	UpdateProductReq   = product.UpdateProductReq
+	UpdateProductResp  = product.UpdateProductResp
 
 	ProductZrpcClient interface {
 		// 创建商品
@@ -33,6 +35,8 @@ type (
 		GetProduct(ctx context.Context, in *GetProductReq, opts ...grpc.CallOption) (*GetProductResp, error)
 		// 更新商品
 		UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error)
+		// 获取商品列表
+		GetProductList(ctx context.Context, in *GetProductListReq, opts ...grpc.CallOption) (*GetProductListResp, error)
 	}
 
 	defaultProductZrpcClient struct {
@@ -68,4 +72,10 @@ func (m *defaultProductZrpcClient) GetProduct(ctx context.Context, in *GetProduc
 func (m *defaultProductZrpcClient) UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error) {
 	client := product.NewProductClient(m.cli.Conn())
 	return client.UpdateProduct(ctx, in, opts...)
+}
+
+// 获取商品列表
+func (m *defaultProductZrpcClient) GetProductList(ctx context.Context, in *GetProductListReq, opts ...grpc.CallOption) (*GetProductListResp, error) {
+	client := product.NewProductClient(m.cli.Conn())
+	return client.GetProductList(ctx, in, opts...)
 }

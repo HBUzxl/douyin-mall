@@ -41,6 +41,19 @@ type UpdateProductResp {
     Product Product `json:"product"`
 }
 
+type GetProductListReq {
+    Page int64 `form:"page"`
+    PageSize int64 `form:"page_size"`
+    Name string `form:"name, optional"`
+    MinPrice int64 `form:"min_price, optional"`
+    MaxPrice int64 `form:"max_price, optional"`
+}
+
+type GetProductListResp {
+    Total int64 `json:"total"`
+    Products []Product `json:"products"`
+}
+
 @server (
     group: product
     prefix: api/v1
@@ -70,4 +83,10 @@ service atlas-api {
     )
     @handler updateProduct
     put /product (UpdateProductReq) returns (UpdateProductResp)
+
+    @doc(
+        summary: "获取商品列表"
+    )
+    @handler getProductList
+    get /product/list (GetProductListReq) returns (GetProductListResp)
 }

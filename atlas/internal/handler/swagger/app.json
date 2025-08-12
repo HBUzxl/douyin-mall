@@ -491,6 +491,95 @@
         }
       }
     },
+    "/api/v1/product/list": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "获取商品列表",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "page",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "page_size",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "name",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "min_price",
+            "in": "query",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "name": "max_price",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "uuid",
+                      "name",
+                      "price",
+                      "stock",
+                      "description"
+                    ],
+                    "properties": {
+                      "description": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "integer"
+                      },
+                      "stock": {
+                        "type": "integer"
+                      },
+                      "uuid": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "total": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/user/auth": {
       "post": {
         "consumes": [
@@ -749,7 +838,7 @@
       }
     }
   },
-  "x-date": "2025-08-11 11:52:55",
+  "x-date": "2025-08-12 16:04:00",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

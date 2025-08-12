@@ -46,3 +46,9 @@ func (s *ProductServer) UpdateProduct(ctx context.Context, in *product.UpdatePro
 	l := logic.NewUpdateProductLogic(ctx, s.svcCtx)
 	return l.UpdateProduct(in)
 }
+
+// 获取商品列表
+func (s *ProductServer) GetProductList(ctx context.Context, in *product.GetProductListReq) (*product.GetProductListResp, error) {
+	l := logic.NewGetProductListLogic(ctx, s.svcCtx)
+	return l.GetProductList(in)
+}
