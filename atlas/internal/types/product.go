@@ -29,3 +29,11 @@ type GetProductReq struct {
 type GetProductResp struct {
 	Product Product `json:"product"`
 }
+
+type UpdateProductReq struct {
+	Product Product `json:"product"`
+}
+
+type UpdateProductResp struct {
+	Product Product `json:"product"`
+}

@@ -33,6 +33,14 @@ type GetProductResp {
     Product Product `json:"product"`
 }
 
+type UpdateProductReq {
+    Product Product `json:"product"`
+}
+
+type UpdateProductResp {
+    Product Product `json:"product"`
+}
+
 @server (
     group: product
     prefix: api/v1
@@ -56,4 +64,10 @@ service atlas-api {
     )
     @handler getProduct
     get /product/get (GetProductReq) returns (GetProductResp)
+
+    @doc(
+        summary: "更新商品"
+    )
+    @handler updateProduct
+    put /product (UpdateProductReq) returns (UpdateProductResp)
 }

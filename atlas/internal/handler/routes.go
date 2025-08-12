@@ -67,6 +67,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: product.DeleteProductHandler(serverCtx),
 			},
 			{
+				// 更新商品
+				Method:  http.MethodPut,
+				Path:    "/product",
+				Handler: product.UpdateProductHandler(serverCtx),
+			},
+			{
 				// 获取商品
 				Method:  http.MethodGet,
 				Path:    "/product/get",

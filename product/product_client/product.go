@@ -21,6 +21,8 @@ type (
 	GetProductReq     = product.GetProductReq
 	GetProductResp    = product.GetProductResp
 	Product           = product.Product
+	UpdateProductReq  = product.UpdateProductReq
+	UpdateProductResp = product.UpdateProductResp
 
 	ProductZrpcClient interface {
 		// 创建商品
@@ -29,6 +31,8 @@ type (
 		DeleteProduct(ctx context.Context, in *DeleteProductReq, opts ...grpc.CallOption) (*DeleteProductResp, error)
 		// 获取商品
 		GetProduct(ctx context.Context, in *GetProductReq, opts ...grpc.CallOption) (*GetProductResp, error)
+		// 更新商品
+		UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error)
 	}
 
 	defaultProductZrpcClient struct {
@@ -58,4 +62,10 @@ func (m *defaultProductZrpcClient) DeleteProduct(ctx context.Context, in *Delete
 func (m *defaultProductZrpcClient) GetProduct(ctx context.Context, in *GetProductReq, opts ...grpc.CallOption) (*GetProductResp, error) {
 	client := product.NewProductClient(m.cli.Conn())
 	return client.GetProduct(ctx, in, opts...)
+}
+
+// 更新商品
+func (m *defaultProductZrpcClient) UpdateProduct(ctx context.Context, in *UpdateProductReq, opts ...grpc.CallOption) (*UpdateProductResp, error) {
+	client := product.NewProductClient(m.cli.Conn())
+	return client.UpdateProduct(ctx, in, opts...)
 }

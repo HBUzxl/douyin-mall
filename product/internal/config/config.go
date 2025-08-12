@@ -12,5 +12,11 @@ type Config struct {
 		ConnMaxLifetime int
 	}
 
+	Redis struct {
+		Host string
+		Type string
+		Pass string
+	}
+
 	NodeID int64
 }

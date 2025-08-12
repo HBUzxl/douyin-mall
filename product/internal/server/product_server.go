@@ -40,3 +40,9 @@ func (s *ProductServer) GetProduct(ctx context.Context, in *product.GetProductRe
 	l := logic.NewGetProductLogic(ctx, s.svcCtx)
 	return l.GetProduct(in)
 }
+
+// 更新商品
+func (s *ProductServer) UpdateProduct(ctx context.Context, in *product.UpdateProductReq) (*product.UpdateProductResp, error) {
+	l := logic.NewUpdateProductLogic(ctx, s.svcCtx)
+	return l.UpdateProduct(in)
+}
