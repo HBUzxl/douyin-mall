@@ -61,6 +61,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/order/list",
 				Handler: order.GetUserOrdersHandler(serverCtx),
 			},
+			{
+				// 更新订单地址
+				Method:  http.MethodPost,
+				Path:    "/order/update-address",
+				Handler: order.UpdateOrderAddressHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api/v1"),
 	)

@@ -14,14 +14,18 @@ import (
 )
 
 type (
-	GetUserOrdersReq  = order.GetUserOrdersReq
-	GetUserOrdersResp = order.GetUserOrdersResp
-	OrderInfo         = order.OrderInfo
-	OrderItem         = order.OrderItem
+	GetUserOrdersReq       = order.GetUserOrdersReq
+	GetUserOrdersResp      = order.GetUserOrdersResp
+	OrderInfo              = order.OrderInfo
+	OrderItem              = order.OrderItem
+	UpdateOrderAddressReq  = order.UpdateOrderAddressReq
+	UpdateOrderAddressResp = order.UpdateOrderAddressResp
 
 	Order interface {
 		// 获取用户订单
 		GetUserOrders(ctx context.Context, in *GetUserOrdersReq, opts ...grpc.CallOption) (*GetUserOrdersResp, error)
+		// 更新订单地址
+		UpdateOrderAddress(ctx context.Context, in *UpdateOrderAddressReq, opts ...grpc.CallOption) (*UpdateOrderAddressResp, error)
 	}
 
 	defaultOrder struct {
@@ -39,4 +43,10 @@ func NewOrder(cli zrpc.Client) Order {
 func (m *defaultOrder) GetUserOrders(ctx context.Context, in *GetUserOrdersReq, opts ...grpc.CallOption) (*GetUserOrdersResp, error) {
 	client := order.NewOrderClient(m.cli.Conn())
 	return client.GetUserOrders(ctx, in, opts...)
+}
+
+// 更新订单地址
+func (m *defaultOrder) UpdateOrderAddress(ctx context.Context, in *UpdateOrderAddressReq, opts ...grpc.CallOption) (*UpdateOrderAddressResp, error) {
+	client := order.NewOrderClient(m.cli.Conn())
+	return client.UpdateOrderAddress(ctx, in, opts...)
 }

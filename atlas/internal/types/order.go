@@ -10,3 +10,12 @@ type GetUserOrdersResp struct {
 	Orders []Order `json:"orders"`
 	Total  int64   `json:"total"`
 }
+
+type UpdateOrderAddressReq struct {
+	OrderUuid   string `json:"order_uuid"`
+	AddressUuid string `json:"address_uuid"`
+}
+
+type UpdateOrderAddressResp struct {
+	Success bool `json:"success"`
+}

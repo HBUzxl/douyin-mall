@@ -292,6 +292,58 @@
         }
       }
     },
+    "/api/v1/order/update-address": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "https"
+        ],
+        "tags": [
+          ""
+        ],
+        "summary": "更新订单地址",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "order_uuid",
+                "address_uuid"
+              ],
+              "properties": {
+                "address_uuid": {
+                  "type": "string"
+                },
+                "order_uuid": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/product": {
       "put": {
         "consumes": [
@@ -922,7 +974,7 @@
       }
     }
   },
-  "x-date": "2025-08-12 16:44:55",
+  "x-date": "2025-08-12 17:42:18",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",
