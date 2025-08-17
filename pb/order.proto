@@ -38,10 +38,20 @@ message UpdateOrderAddressResp {
   string address_uuid = 1;
 }
 
+message GetOrderReq {
+  string order_uuid = 1;
+}
+
+message GetOrderResp {
+  OrderInfo order = 1;
+}
+
 
 service Order {
   // 获取用户订单
   rpc GetUserOrders(GetUserOrdersReq) returns(GetUserOrdersResp);
   // 更新订单地址
   rpc UpdateOrderAddress(UpdateOrderAddressReq) returns(UpdateOrderAddressResp);
+  // 获取订单信息
+  rpc GetOrder(GetOrderReq) returns(GetOrderResp);
 }

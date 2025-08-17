@@ -34,3 +34,9 @@ func (s *OrderServer) UpdateOrderAddress(ctx context.Context, in *order.UpdateOr
 	l := logic.NewUpdateOrderAddressLogic(ctx, s.svcCtx)
 	return l.UpdateOrderAddress(in)
 }
+
+// 获取订单信息
+func (s *OrderServer) GetOrder(ctx context.Context, in *order.GetOrderReq) (*order.GetOrderResp, error) {
+	l := logic.NewGetOrderLogic(ctx, s.svcCtx)
+	return l.GetOrder(in)
+}
